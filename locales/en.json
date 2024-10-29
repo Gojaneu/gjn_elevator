@@ -1,0 +1,7 @@
+{
+    "progress_in_elevator": "You are riding the elevator...",
+    "elevator_title": "Elevator",
+    "elevator_arrived": "You have arrived at: %s",
+    "cannot_use_item_in_vehicle": "You cannot use this item while in a vehicle.",
+    "item_notify_1": "You do not have permission to use this item."
+}

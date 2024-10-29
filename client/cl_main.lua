@@ -1,3 +1,5 @@
+lib.locale()
+
 ESX = exports['es_extended']:getSharedObject()
 
 local function useElevator(elevator, targetFloor)
@@ -5,7 +7,7 @@ local function useElevator(elevator, targetFloor)
     local targetCoords = elevator.locations[targetFloor].teleportCoords or elevator.locations[targetFloor].coords
 
     if Config.Debug then
-        print(('Přesouvám hráče do patra: %s, Souřadnice: %s'):format(targetFloor, targetCoords))
+        print((locale("elevator_arrived")):format(targetFloor, targetCoords))
     end
 
     DoScreenFadeOut(500)
@@ -13,7 +15,7 @@ local function useElevator(elevator, targetFloor)
 
     lib.progressBar({
         duration = 3000,
-        label = 'Jedeš výtahem...',
+        label = locale("progress_in_elevator"),
         useWhileDead = false,
         canCancel = false,
         disable = {
@@ -29,8 +31,8 @@ local function useElevator(elevator, targetFloor)
     DoScreenFadeIn(500)
 
     lib.notify({
-        title = 'Výtah',
-        description = ('Dorazili jste do: %s'):format(elevator.locations[targetFloor].label)
+        title = locale("elevator_title"),
+        description = (locale("elevator_arrived")):format(elevator.locations[targetFloor].label)
     })
 end
 
@@ -40,14 +42,14 @@ CreateThread(function()
             if Config.Interactions == "ox_target" then
                 exports.ox_target:addBoxZone({
                     coords = location.coords,
-                    size = location.size or vec3(2, 2, 2), -- Použití konfigurační velikosti nebo výchozí hodnoty
-                    rotation = location.rotation or 0, -- Použití konfigurační rotace nebo výchozí hodnoty
+                    size = location.size or vec3(2, 2, 2), -- Use configuration size or default value
+                    rotation = location.rotation or 0, -- Use configuration rotation or default value
                     debug = Config.Debug,
                     options = {
                         {
                             name = elevatorName,
                             icon = 'fa-solid fa-elevator',
-                            label = 'Výtah',
+                            label = locale("elevator_title"),
                             canInteract = function(entity, distance, coords, name)
                                 local playerData = ESX.GetPlayerData()
                                 if elevator.jobRequired then
@@ -91,7 +93,7 @@ CreateThread(function()
                         {
                             name = elevatorName,
                             icon = 'fa-solid fa-elevator',
-                            label = 'Výtah',
+                            label = locale("elevator_title"),
                             canInteract = function(entity, distance, coords, name)
                                 local playerData = ESX.GetPlayerData()
                                 if elevator.jobRequired then

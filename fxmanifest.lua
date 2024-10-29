@@ -1,19 +1,30 @@
 fx_version 'cerulean'
 game 'gta5'
 
-author 'TvojeJméno'
-description 'Elevator script using ox_lib, ox_target, and ESX'
+lua54 'yes'
+
+author 'Gojan'
+description 'Elevator script using ox_lib, and ESX'
 version '1.0.0'
 
-shared_script '@ox_lib/init.lua'
-shared_script 'sh_config.lua'
-client_script 'client/cl_main.lua'
-server_script 'server/sv_main.lua'
+shared_script {
+    'shared/*.lua',
+    '@ox_lib/init.lua'
+}
+
+client_script {
+    'client/*.lua'
+}
+
+server_script {
+    'server/*.lua'
+}
 
 dependencies {
     'ox_lib',
-    'ox_target',
     'es_extended'
 }
 
-lua54 'yes'
+files {
+    'locales/*.json'
+}
