@@ -1,11 +1,20 @@
 Config = {}
 
 -- Debug mode
+Config.Framework = "ESX"
+Config.NewESX = true -- if you using new version of ESX framework type true, if not type false
+Config.Notifications = "ox_lib"
+Config.ProgressBar = "ox_lib"
 Config.Debug = false -- If set to true, debug information will be displayed
 
 -- Interaction type
 Config.Interactions = "lunar_bridge" -- Interaction method: ox_target, lunar_bridge
 
+Config.ProgressBarDisables = {
+    car = true,
+    move = true,
+    combat = true,
+}
 -- Elevator configuration
 Config.Elevators = {
     ["realhub"] = {

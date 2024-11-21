@@ -13,17 +13,21 @@ local function useElevator(elevator, targetFloor)
     DoScreenFadeOut(500)
     Wait(500)
 
-    lib.progressBar({
-        duration = 3000,
-        label = locale("progress_in_elevator"),
-        useWhileDead = false,
-        canCancel = false,
-        disable = {
-            car = true,
-            move = true,
-            combat = true,
-        },
-    })
+    if Config.ProgressBar == "ox_lib" then
+        lib.progressBar({
+            duration = 3000,
+            label = locale("progress_in_elevator"),
+            useWhileDead = false,
+            canCancel = false,
+            disable = {
+                car = Config.ProgressBarDisables.car,
+                move = Config.ProgressBarDisables.move,
+                combat = Config.ProgressBar.combat,
+            },
+        })
+    elseif Config.ProgressBar == "esx" then
+    elseif Config.ProgressBar == "qbcore" then
+    end
 
     SetEntityCoords(playerPed, targetCoords.x, targetCoords.y, targetCoords.z)
 
@@ -87,8 +91,8 @@ CreateThread(function()
                 })
             elseif Config.Interactions == "lunar_bridge" then
                 exports.lunar_bridge:addPoint({
-                    coords = location.coords, -- vector3
-                    distance = 1.0, -- the distance at which the becomes interactable
+                    coords = location.coords,
+                    distance = 1.0,
                     options = {
                         {
                             name = elevatorName,
